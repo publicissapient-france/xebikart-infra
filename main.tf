@@ -5,11 +5,13 @@ module "gke" {
   region = "${var.region}"
 }
 
-module "ci" {
-  source = "./ci"
-  gkeEndpoint = "${module.gke.gke_endpoint}"
-}
+module "k8s" {
+  source = "./k8s"
 
-module "leaderboard" {
-  source = "./leaderboard"
+  endpoint = "${module.gke.endpoint}"
+  access_token = "${module.gke.access_token}"
+
+  cluster_ca_certificate = "${module.gke.cluster_ca_certificate}"
+  client_key = "${module.gke.client_key}"
+  client_certificate = "${module.gke.client_certificate}"
 }

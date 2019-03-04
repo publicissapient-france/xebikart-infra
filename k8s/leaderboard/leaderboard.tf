@@ -1,4 +1,3 @@
-
 // Leaderboard
 resource "kubernetes_namespace" "leaderboard" {
   "metadata" {
@@ -12,31 +11,37 @@ resource "kubernetes_service" "leaderboard" {
     namespace = "${kubernetes_namespace.leaderboard.metadata.name}"
   }
   "spec" {
+    session_affinity = "ClientIP"
     selector {
       app = "leaderboard"
     }
     port {
       port = 80
+      target_port = 80
       protocol = "TCP"
     }
+    type = "LoadBalancer"
   }
 }
 
-resource "kubernetes_replication_controller" "leaderboard" {
-  "metadata" {
+resource "kubernetes_deployment" "leaderboard" {
+  metadata {
     name = "leaderboard"
-    namespace = "${kubernetes_namespace.leaderboard.metadata.name}"
-  }
-  "spec" {
-    "selector" {
-      run = "leaderboard"
+    labels {
+      test = "leaderboard"
     }
+  }
+  spec {
+    replicas = 3
     "template" {
-      container {
-        name = "hello-world"
-        image = "hello-world:latest" // Test image
+      "metadata" {}
+      "spec" {
+        container {
+          name = "hello-world"
+          image = "hello-world:latest"
+          // Test image
+        }
       }
     }
-    replicas = 2
   }
 }
