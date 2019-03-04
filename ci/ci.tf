@@ -1,15 +1,15 @@
+variable "gkeEndpoint" {}
+
 provider "kubernetes" {
-  host = "${google_container_cluster.primary.endpoint}"
+  host = "${var.gkeEndpoint}"
 }
 
-// K8S namespace creation
 resource "kubernetes_namespace" "ci" {
   "metadata" {
     name = "ci"
   }
 }
 
-// Service CI
 resource "kubernetes_service" "circleci" {
   "metadata" {
     name = "circleci"
@@ -39,6 +39,8 @@ resource "kubernetes_replication_controller" "circleci" {
     }
   }
 }
+
+
 
 
 
