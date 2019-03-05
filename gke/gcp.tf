@@ -5,8 +5,6 @@ variable "clusterName" {}
 provider "google" {
   project = "${var.project}"
   region = "${var.region}"
-  credentials = "${file("credentials.json")}"
-  // TODO: env variable
 }
 
 data "google_client_config" "current" {}
