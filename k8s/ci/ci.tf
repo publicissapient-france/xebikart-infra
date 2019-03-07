@@ -1,15 +1,16 @@
 resource "kubernetes_namespace" "ci" {
-  "metadata" {
+  metadata {
     name = "ci"
   }
 }
 
 resource "kubernetes_service" "circleci" {
-  "metadata" {
+  metadata {
     name = "circleci"
-    namespace = "${kubernetes_namespace.ci.metadata.name}"
+    //namespace = "${kubernetes_namespace.ci.metadata.name}"
+    namespace = "ci"
   }
-  "spec" {
+  spec {
     selector {
       run = "circleci"
     }
@@ -17,9 +18,10 @@ resource "kubernetes_service" "circleci" {
 }
 
 resource "kubernetes_pod" "circleci" {
-  "metadata" {
+  metadata {
     name = "circleci"
-    namespace = "${kubernetes_namespace.ci.metadata.name}"
+    //namespace = "${kubernetes_namespace.ci.metadata.name}"
+    namespace = "ci"
     labels {
       app = "circleci"
     }

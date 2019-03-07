@@ -1,16 +1,17 @@
 // Leaderboard
 resource "kubernetes_namespace" "leaderboard" {
-  "metadata" {
+  metadata {
     name = "leaderboard"
   }
 }
 
 resource "kubernetes_service" "leaderboard" {
-  "metadata" {
+  metadata {
     name = "leaderboard"
-    namespace = "${kubernetes_namespace.leaderboard.metadata.name}"
+    //namespace = "${kubernetes_namespace.leaderboard.metadata.name}"
+     namespace = "leaderboard"
   }
-  "spec" {
+  spec {
     session_affinity = "ClientIP"
     selector {
       app = "leaderboard"
@@ -33,9 +34,18 @@ resource "kubernetes_deployment" "leaderboard" {
   }
   spec {
     replicas = 3
-    "template" {
-      "metadata" {}
-      "spec" {
+    selector {
+      match_labels {
+        app = "leaderboard"
+      }
+    }
+    template {
+      "metadata" {
+        labels {
+          app = "leaderboard"
+        }
+      }
+      spec {
         container {
           name = "hello-world"
           image = "hello-world:latest"
