@@ -1,0 +1,122 @@
+resources:
+
+  # Terraform remote state GCS bucket
+  - name: {{ env['project'] }}-terraform-state-bucket
+    type: storage.v1.bucket
+    properties:
+      location: europe-west1
+      storageClass: regional
+
+  # Enable Resource Manager API on the project so Terraform can create
+  # folders and projects since Deployment Manager is not able to
+  - name: {{ env['project'] }}-service-enable-resource-manager
+    action: gcp-types/servicemanagement-v1:servicemanagement.services.enable
+    properties:
+      consumerId: "project:{{ env['project'] }}"
+      serviceName: cloudresourcemanager.googleapis.com
+
+  # Enable Billing API on the project so Terraform can create
+  # folders and projects since Deployment Manager is not able to
+  - name: {{ env['project'] }}-service-enable-billing
+    action: gcp-types/servicemanagement-v1:servicemanagement.services.enable
+    properties:
+      consumerId: "project:{{ env['project'] }}"
+      serviceName: cloudbilling.googleapis.com
+
+  # Enable IAM API on the project so we can create Terraform service
+  # account
+  - name: {{ env['project'] }}-service-enable-iam
+    action: gcp-types/servicemanagement-v1:servicemanagement.services.enable
+    properties:
+      consumerId: "project:{{ env['project'] }}"
+      serviceName: iam.googleapis.com
+
+  # Enable Service Usage API on the project so we can create Terraform service
+  # account
+  - name: {{ env['project'] }}-service-enable-service-usage
+    action: gcp-types/servicemanagement-v1:servicemanagement.services.enable
+    properties:
+      consumerId: "project:{{ env['project'] }}"
+      serviceName: serviceusage.googleapis.com
+
+  # Create Service Account for Terraform
+  # TODO : we need to add a dependency to the IAM API activation so we don't
+  # have to do 2 runs
+  #- name: {{ env['project'] }}-terraform-service-account
+  #  type: iam.v1.serviceAccount
+  #  properties:
+  #    accountId:    terraform-service-account
+  #    displayName:  terraform-service-account
+  #- name: {{ env['project'] }}-ci-service-account
+  #  type: iam.v1.serviceAccount
+  #  properties:
+  #    accountId:    ci-service-account
+  #    displayName:  ci-service-account
+
+  #- name: {{ env['project'] }}-get-project-iam
+  #  action: 'gcp-types/cloudresourcemanager-v1:cloudresourcemanager.projects.getIamPolicy'
+  #  properties:
+  #    resource: {{ env['project'] }}
+  #  metadata:
+  #    #dependsOn: get_iam_policy_dependencies
+  #    runtimePolicy: ['UPDATE_ALWAYS']
+
+  #- name: {{ env['project'] }}-patch-project-iam
+  #  action: 'gcp-types/cloudresourcemanager-v1:cloudresourcemanager.projects.setIamPolicy'
+  #  properties:
+  #    resource: {{ env['project'] }}
+  #    policy: "$(ref.{{ env['project'] }}-get-project-iam)"
+  #    gcpIamPolicyPatch:
+  #      add:
+  #        - role: 'roles/storage.objectAdmin'
+  #          members:
+  #            - "serviceAccount:$(ref.{{ env['project'] }}-terraform-service-account.email)"
+  #            - "serviceAccount:$(ref.{{ env['project'] }}-ci-service-account.email)"
+
+  #- name: {{ env['project'] }}-get-org-iam
+  #  action: 'gcp-types/cloudresourcemanager-v1:cloudresourcemanager.organizations.getIamPolicy'
+  #  properties:
+  #    resource: "organizations/<ID>"
+  #  metadata:
+  #    #dependsOn: get_iam_policy_dependencies
+  #    runtimePolicy: ['UPDATE_ALWAYS']
+
+  #- name: {{ env['project'] }}-patch-org-iam
+  #  action: 'gcp-types/cloudresourcemanager-v1:cloudresourcemanager.organizations.setIamPolicy'
+  #  properties:
+  #    resource: "organizations/<ID>"
+  #    policy: "$(ref.{{ env['project'] }}-get-org-iam)"
+  #    gcpIamPolicyPatch:
+  #      add:
+  #        - role: 'roles/owner'
+  #          members:
+  #            - "serviceAccount:$(ref.{{ env['project'] }}-terraform-service-account.email)"
+  #            - "serviceAccount:$(ref.{{ env['project'] }}-ci-service-account.email)"
+  #        - role: 'roles/resourcemanager.folderAdmin'
+  #          members:
+  #            - "serviceAccount:$(ref.{{ env['project'] }}-terraform-service-account.email)"
+  #            - "serviceAccount:$(ref.{{ env['project'] }}-ci-service-account.email)"
+  #        - role: 'roles/resourcemanager.projectCreator'
+  #          members:
+  #            - "serviceAccount:$(ref.{{ env['project'] }}-terraform-service-account.email)"
+  #            - "serviceAccount:$(ref.{{ env['project'] }}-ci-service-account.email)"
+  #        # Why admin and not just projectManager ? :(
+  #        # See https://www.terraform.io/docs/providers/google/r/google_project.html#billing_account
+  #        - role: 'roles/billing.admin'
+  #          members:
+  #            - "serviceAccount:$(ref.{{ env['project'] }}-terraform-service-account.email)"
+  #            - "serviceAccount:$(ref.{{ env['project'] }}-ci-service-account.email)"
+  #        # We need this for resourcemanager.organizations.setIamPolicy ...
+  #        # Maybe it's too large
+  #        - role: 'roles/resourcemanager.organizationAdmin'
+  #          members:
+  #            - "serviceAccount:$(ref.{{ env['project'] }}-terraform-service-account.email)"
+  #            - "serviceAccount:$(ref.{{ env['project'] }}-ci-service-account.email)"
+  #        # Add Shared VPC Admin
+  #        - role: 'roles/compute.xpnAdmin'
+  #          members:
+  #            - "serviceAccount:$(ref.{{ env['project'] }}-terraform-service-account.email)"
+  #            - "serviceAccount:$(ref.{{ env['project'] }}-ci-service-account.email)"
+  #    #  'remove': policies_to_remove
+  #  metadata:
+  #    runtimePolicy: ['UPDATE_ALWAYS']
