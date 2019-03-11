@@ -12,6 +12,4 @@ module "k8s" {
   access_token = "${module.gke.access_token}"
 
   cluster_ca_certificate = "${module.gke.cluster_ca_certificate}"
-  client_key = "${module.gke.client_key}"
-  client_certificate = "${module.gke.client_certificate}"
 }
