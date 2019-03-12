@@ -1,0 +1,4 @@
+apiVersion: v1
+name: message-broker
+version: 1.0.0
+description: Message broker for Xebikart 2019
