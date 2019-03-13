@@ -1,2 +1,21 @@
+replicaCount: 3
+
+metadata:
+  name: my-message-broker
+labels:
+  app: message-broker
+
+ingress:
+  enabled: false
+
+image:
+  name: rabbitmq
+  tag: 3.7-alpine
+  ports:
+    containerPort: 5672
+
+prometheus:
+  exporter:
+    enabled: true
 rabbitmqMQTTPlugin:
   enabled: true
