@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: {{.Values.metadata.name}}-service
+    labels:
+        app: {{.Values.labels.app}}
+        chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+        release: "{{.Release.Name}}"
+        heritage: "{{.Release.Service}}"
+spec:
+    type: LoadBalancer
+    ports:
+        - port: {{.Values.image.ports.containerPort}}
+    selector:
+        app: {{.Values.labels.app}}

@@ -11,6 +11,7 @@ ingress:
 image:
   name: rabbitmq
   tag: 3.7-alpine
+  imagePullPolicy: IfNotPresent
   ports:
     containerPort: 5672
 
