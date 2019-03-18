@@ -17,6 +17,20 @@ gcloud auth application-default login
 gcloud auth login
 ```
 
+For more advanced authentication methods, please see the [GCP documentation
+about this topic] (https://cloud.google.com/docs/authentication/production)
+:wink:
+
+## Inputs
+
+The concepts of
+[locals](https://www.terraform.io/docs/configuration/locals.html) and
+[variables](https://www.terraform.io/docs/configuration/variables.html) de
+Terraform are used to "configure" the infrastructure that is being created.
+
+All of these settings can be found under
+[`terraform/inputs.tf`](terraform/inputs.tf)
+
 # GDM
 
 [xebikart-deployment-infra](https://console.cloud.google.com/home/dashboard?project=xebikart-deployment-infra&organizationId=&folder=&supportedpurview=project)
