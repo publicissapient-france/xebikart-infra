@@ -2,3 +2,4 @@ dependencies:
   - name: rabbitmq-ha
     version: 1.22.0
     repository: "@stable"
+    alias: rabbitmq-ha
