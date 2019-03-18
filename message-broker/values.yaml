@@ -1,22 +1,13 @@
-replicaCount: 3
-
-metadata:
-  name: my-message-broker
-labels:
-  app: message-broker
-
-ingress:
-  enabled: false
-
-image:
-  name: rabbitmq
-  tag: 3.7-alpine
-  imagePullPolicy: IfNotPresent
-  ports:
-    containerPort: 5672
-
-prometheus:
-  exporter:
+# Config for rabbitmq-ha (alias)
+rabbitmq-ha:
+  replicaCount: 3
+  metadata:
+    name: my-message-broker
+  labels:
+    app: message-broker
+  ingress:
     enabled: true
-rabbitmqMQTTPlugin:
-  enabled: true
+  rabbitmqMQTTPlugin:
+    enabled: true
+  rabbitmqUserName: guest
+  rabbitmqPassword: guest
