@@ -1,4 +1,4 @@
-# Use kubectl and Helm for Kubernetes deployment
+: Use kubectl and Helm for Kubernetes deployment
 
 * Status: [Proposed | Rejected | Accepted | Deprecated | … | superseded by [ADR-0005](0005-example.md)]
 - Date: 2019-MM-DD
@@ -18,6 +18,8 @@
 
 ## Considered Options
 
+
+kubectl & Helm
 * [option 1]
 * [option 2]
 * [option 3]
