@@ -1,7 +1,7 @@
-# Use TBD as message broker for devices
+# Use RabbitMQ with MQTT plugin as message broker for devices
 
-* Status: [Proposed | Rejected | Accepted | Deprecated | … | superseded by [ADR-0005](0005-example.md)]
-- Date: 2019-MM-DD
+* Status: Accepted
+- Date: 2019-03-11
 - Deciders:
     - [list everyone involved in the decision]
 - Technical Story: [description | ticket/issue URL] <!-- optional -->
@@ -20,12 +20,13 @@ What broker and protocol should we use?
 
 ## Considered Options
 
-- RabbitMQ
-- VerneMQ
-- AWS Kinesis
-- Google Cloud Pub/Sub
-- Kafka
-- NATS
+- [RabbitMQ with MQTT plugin](https://www.rabbitmq.com/mqtt.html)
+- [VerneMQ](https://vernemq.com/)
+- Non-MQTT brokers
+    - [Kafka](https://kafka.apache.org/)
+    - [NATS](https://nats.io/)
+    - [AWS Kinesis](https://aws.amazon.com/kinesis/)
+    - [Google Cloud Pub/Sub](https://cloud.google.com/pubsub/)
 
 ## Decision Outcome
 
