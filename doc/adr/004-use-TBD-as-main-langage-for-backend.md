@@ -20,6 +20,12 @@ What programming language should we use?
 
 ## Considered Options
 
+- Go ? <=
+- Elixir ?
+- Scala ?
+- Kotlin ?
+
+
 * [option 1]
 * [option 2]
 * [option 3]
