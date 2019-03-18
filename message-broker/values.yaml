@@ -1,13 +1,18 @@
 # Config for rabbitmq-ha (alias)
 rabbitmq-ha:
   replicaCount: 3
-  metadata:
+  metadata:k get
     name: my-message-broker
   labels:
     app: message-broker
-  ingress:
-    enabled: true
   rabbitmqMQTTPlugin:
     enabled: true
   rabbitmqUserName: guest
   rabbitmqPassword: guest
+
+# Configuration NGNIX
+controler:
+  service:
+    targetPorts:
+      tcp:
+        1883: "default/my-rabbit-rabbitmq-ha:1883"
