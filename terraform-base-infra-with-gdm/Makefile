@@ -3,11 +3,11 @@ DEPLOYMENT=terraform-base-infra
 
 update deploy::
 	gcloud --project ${GCP_PROJECT} deployment-manager \
-	  deployments update ${DEPLOYMENT} --template ${DEPLOYMENT}.jinja
+	  deployments update ${DEPLOYMENT} --template ${DEPLOYMENT}.j2
 
 create::
 	gcloud --project ${GCP_PROJECT} deployment-manager \
-	  deployments create ${DEPLOYMENT} --template ${DEPLOYMENT}.jinja
+	  deployments create ${DEPLOYMENT} --template ${DEPLOYMENT}.j2
 
 delete::
 	gcloud --project ${GCP_PROJECT} deployment-manager \
