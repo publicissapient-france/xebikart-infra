@@ -1,3 +1,4 @@
+# The main GKE cluster. This is essentially the main purpose of all of this
 resource "google_container_cluster" "gke-cluster" {
   name   = "xebikart-gke-${var.environment}-1"
   region = "europe-west1"
