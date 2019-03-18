@@ -6,6 +6,7 @@ locals {
   xebia_billing_account_id = "002C54-030B48-27C3F8"
 }
 
+# TODO - Document how to override this?
 variable "environment" {
   type    = "string"
   default = "dev"
