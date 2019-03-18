@@ -1,4 +1,4 @@
-# Use RabbitMQ with MQTT plugin as message broker for devices
+# Use RabbitMQ with MQTT plugin as message broker for devices so they can communicate with each other
 
 * Status: Accepted
 - Date: 2019-03-11
