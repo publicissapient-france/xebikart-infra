@@ -4,7 +4,7 @@
 - Date: 2019-03-11
 - Deciders:
     - achotard
-    - TODO
+    - jpthiery
 
 ## Context and Problem Statement
 
@@ -26,6 +26,7 @@ What programming language should we use?
 - Elixir
 - Scala
 - Kotlin
+- Java
 - Other languages
 
 ## Decision Outcome
