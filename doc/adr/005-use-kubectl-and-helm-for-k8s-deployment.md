@@ -1,75 +1,70 @@
-: Use kubectl and Helm for Kubernetes deployment
+# Use kubectl and Helm for Kubernetes deployment
 
-* Status: [Proposed | Rejected | Accepted | Deprecated | … | superseded by [ADR-0005](0005-example.md)]
-- Date: 2019-MM-DD
+- Status: Accepted
+- Date: 2019-03-17
 - Deciders:
-    - [list everyone involved in the decision]
-- Technical Story: [description | ticket/issue URL] <!-- optional -->
+    - achotard
+    - jmartinsanchez
 
 ## Context and Problem Statement
 
-[Describe the context and problem statement, e.g., in free form using two to three sentences. You may want to articulate the problem in form of a question.]
+We want to **deploy** pods, services, and other resources on **Kubernetes**,
+which is a GKE cluster for now.
+
+What tool should we use to do this?
 
 ## Decision Drivers <!-- optional -->
 
-* [driver 1, e.g., a force, facing concern, …]
-* [driver 2, e.g., a force, facing concern, …]
-* … <!-- numbers of drivers can vary -->
+- TODO
 
 ## Considered Options
 
+**TODO how to link to other sections of the markdown for GitHub?**
 
-kubectl & Helm
-* [option 1]
-* [option 2]
-* [option 3]
-* … <!-- numbers of options can vary -->
+- Terraform
+- Ansible
+- Kubectl
+- Helm
 
 ## Decision Outcome
 
-Chosen option: "[option 1]", because [justification. e.g., only option, which meets k.o. criterion decision driver | which resolves force force | … | comes out best (see below)].
+Chosen option: "A mix of **kubectl** and **Helm**", because:
 
-### Positive Consequences <!-- optional -->
-
-* [e.g., improvement of quality attribute satisfaction, follow-up decisions required, …]
-* …
-
-### Negative Consequences <!-- optional -->
-
-* [e.g., compromising quality attribute, follow-up decisions required, …]
-* …
+- TODO
 
 ## Pros and Cons of the Options <!-- optional -->
 
-### [option 1]
+### Terraform
 
-[example | description | pointer to more information | …] <!-- optional -->
+[Terraform](TODO) is ...
+It has resources to describe Kubernetes services (TODO link)
 
-* Good, because [argument a]
-* Good, because [argument b]
-* Bad, because [argument c]
-* … <!-- numbers of pros and cons can vary -->
+Pros:
 
-### [option 2]
+- Already used to spawn the base infrastructure on GCP (Projects, GKE cluster,
+  etc)
 
-[example | description | pointer to more information | …] <!-- optional -->
+Cons:
 
-* Good, because [argument a]
-* Good, because [argument b]
-* Bad, because [argument c]
-* … <!-- numbers of pros and cons can vary -->
+- Is yet another format overlay to describe Kubernetes resources
 
-### [option 3]
+### Ansible
 
-[example | description | pointer to more information | …] <!-- optional -->
+[Ansible](TODO) was a no-go from the beginning since we're trying to avoid using it for
+unappropriate use cases such as this one. Talking to APIs such as the
+Kubernetes one is definitely not the job for which Ansible was made for.
 
-* Good, because [argument a]
-* Good, because [argument b]
-* Bad, because [argument c]
-* … <!-- numbers of pros and cons can vary -->
+### Kubectl
+
+[`kubectl`](TODO) is the official command line tool to talk to the Kubernetes
+API.
+
+### Helm
+
+[Helm](TODO) is the TODO define
 
 ## Links <!-- optional -->
 
-* [Link type] [Link to ADR] <!-- example: Refined by [ADR-0005](0005-example.md) -->
-* … <!-- numbers of links can vary -->
+- [Link type] [Link to ADR] <!-- example: Refined by [ADR-0005](0005-example.md) -->
+- … <!-- numbers of links can vary -->
 https://dzone.com/articles/terraform-vs-helm-for-kubernetes
