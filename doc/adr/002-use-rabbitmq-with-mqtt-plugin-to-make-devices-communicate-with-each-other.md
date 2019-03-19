@@ -49,6 +49,9 @@ We also **do not exclude using another broker such as Kafka or NATS for appropri
 Pros:
 
 - Existing ["official" Helm chart](https://github.com/helm/charts/tree/master/stable/rabbitmq) ready to be deployed on Kubernetes
+- Another ["official" Helm chart supporting High
+  Availability](https://github.com/helm/charts/tree/master/stable/rabbitmq-ha/)
+  RabbitMQ clusters on Kubernetes
 - Official [MQTT plugin](https://www.rabbitmq.com/mqtt.html) supported in core distribution
 
 Cons:
