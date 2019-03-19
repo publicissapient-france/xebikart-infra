@@ -9,7 +9,7 @@
 
 ## Context and Problem Statement
 
-We want a message broker so the devices and other applicaitons can communicate with the backend.
+We want a message broker so the devices and other applications can communicate with the backend.
 
 What broker and protocol should we use?
 
