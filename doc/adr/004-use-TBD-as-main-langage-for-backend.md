@@ -1,80 +1,48 @@
-# Use TBD as main programming language for backend
+# Use Go as main programming language for backend
 
-* Status: [Proposed | Rejected | Accepted | Deprecated | … | superseded by [ADR-0005](0005-example.md)]
-- Date: 2019-MM-DD
+* Status: Accepted
+- Date: 2019-03-11
 - Deciders:
-    - [list everyone involved in the decision]
-- Technical Story: [description | ticket/issue URL] <!-- optional -->
+    - achotard
+    - TODO
 
 ## Context and Problem Statement
 
-We want to code a backend that will handle inbound informations through the message broker, and expose them to the dashboard front-end.
+We want to code a backend that will handle inbound informations through the
+message broker, and expose them to the dashboard front-end.
 
 What programming language should we use?
 
-## Decision Drivers <!-- optional -->
+## Decision Drivers
 
-* [driver 1, e.g., a force, facing concern, …]
-* [driver 2, e.g., a force, facing concern, …]
-* … <!-- numbers of drivers can vary -->
+- Should be interesting (fun, new, ...) for people
+- Either already adopted by Xebians or not too hard to adopt based on existing
+  knowledge
+- Library support for our usecases
 
 ## Considered Options
 
-- Go ? <=
-- Elixir ?
-- Scala ?
-- Kotlin ?
-
-
-* [option 1]
-* [option 2]
-* [option 3]
-* … <!-- numbers of options can vary -->
+- Go
+- Elixir
+- Scala
+- Kotlin
+- Other languages
 
 ## Decision Outcome
 
-Chosen option: "[option 1]", because [justification. e.g., only option, which meets k.o. criterion decision driver | which resolves force force | … | comes out best (see below)].
+Chosen option: **"Go"**, because:
 
-### Positive Consequences <!-- optional -->
+- It has good library support for things such as **HTTP/2** and **Protobuf**
+  (separately, we're not talking about gRPC  here). This will help establish
+  strong bidirectionnal and persistant streaming with the dashboard (HTTP/2).
+  It will also open the way to Protobuf serialized messages over the message
+  bus that will maybe comme in addition to RabbitMQ.
+- People on the project want to play more with it!
+- It seems appropriate for small (micro)services like the one we're going to
+  build
 
-* [e.g., improvement of quality attribute satisfaction, follow-up decisions required, …]
-* …
-
-### Negative Consequences <!-- optional -->
-
-* [e.g., compromising quality attribute, follow-up decisions required, …]
-* …
-
-## Pros and Cons of the Options <!-- optional -->
-
-### [option 1]
-
-[example | description | pointer to more information | …] <!-- optional -->
-
-* Good, because [argument a]
-* Good, because [argument b]
-* Bad, because [argument c]
-* … <!-- numbers of pros and cons can vary -->
-
-### [option 2]
-
-[example | description | pointer to more information | …] <!-- optional -->
-
-* Good, because [argument a]
-* Good, because [argument b]
-* Bad, because [argument c]
-* … <!-- numbers of pros and cons can vary -->
-
-### [option 3]
-
-[example | description | pointer to more information | …] <!-- optional -->
-
-* Good, because [argument a]
-* Good, because [argument b]
-* Bad, because [argument c]
-* … <!-- numbers of pros and cons can vary -->
-
-## Links <!-- optional -->
-
-* [Link type] [Link to ADR] <!-- example: Refined by [ADR-0005](0005-example.md) -->
-* … <!-- numbers of links can vary -->
+However, we are **not excluding other languages** depending on usecases and
+wishes of people working on it. We want people to contribute so we won't force
+anyone to use a given language. **People are free to use the language they
+want**, but we'll try to have **Go as a default main language as much as
+possible**.
