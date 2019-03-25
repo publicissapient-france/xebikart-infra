@@ -1,18 +1,29 @@
 # Config for rabbitmq-ha (alias)
+global:
+  rabbitmqMqttPort: 1883
 rabbitmq-ha:
-  replicaCount: 3
-  metadata:k get
+  replicaCount: 2
+  service:
+    type: LoadBalancer
+    clusterIP: null
+  metadata:
     name: my-message-broker
   labels:
     app: message-broker
   rabbitmqMQTTPlugin:
     enabled: true
-  rabbitmqUserName: guest
-  rabbitmqPassword: guest
-
-# Configuration NGNIX
-controler:
-  service:
-    targetPorts:
-      tcp:
-        1883: "default/my-rabbit-rabbitmq-ha:1883"
+  rabbitmqUsername: xebikart
+  rabbitmqPassword: xebikart
+  definitions:
+    users: |-
+      {"name": "xebikart1", "password": "xebikart1", "tags": "kart"},
+      {"name": "xebikart2", "password": "xebikart2", "tags": "kart"}
+    permissions: |-
+      {"user": "xebikart1", "vhost": "/", "configure": ".*", "write": ".*", "read": ".*"},
+      {"user": "xebikart2", "vhost": "/", "configure": ".*", "write": ".*", "read": ".*"}
+    queues: |-
+      {"name":"xebikart-events", "vhost":"/", "durable":true, "auto_delete":false, "arguments":{}}
+    exchanges: |-
+      {"name":"xebikart-exchange","vhost":"/","type":"direct","durable":true,"auto_delete":false,"internal":false,"arguments":{}}
+    bindings: |-
+      {"source":"xebikart-binding", "vhost":"/", "destination":"xebikart-events", "destination_type":"queue", "routing_key":"myKey", "arguments":{}}
