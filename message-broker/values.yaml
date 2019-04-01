@@ -26,8 +26,8 @@ rabbitmq-ha:
       {"name": "xebikart1", "password": "xebikart1", "tags": "kart"},
       {"name": "xebikart2", "password": "xebikart2", "tags": "kart"}
     permissions: |-
-      {"user": "xebikart1", "vhost": "/", "configure": ".*", "write": ".*", "read": ".*"},
-      {"user": "xebikart2", "vhost": "/", "configure": ".*", "write": ".*", "read": ".*"}
+      {"user": "xebikart1", "vhost": "/", "configure": "", "write": ".*", "read": ".*"},
+      {"user": "xebikart2", "vhost": "/", "configure": "", "write": ".*", "read": ".*"}
     queues: |-
       {"name":"xebikart-events", "vhost":"/", "durable":true, "auto_delete":false, "arguments":{}}
     exchanges: |-
