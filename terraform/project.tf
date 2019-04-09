@@ -13,6 +13,9 @@ resource "google_project_services" "project_services" {
   project = "${google_project.xebikart.project_id}"
 
   services = [
-    "container.googleapis.com"
+    "container.googleapis.com",
+    # Compute and OSLogin are needed for GKE
+    "compute.googleapis.com",
+    "oslogin.googleapis.com"
   ]
 }
