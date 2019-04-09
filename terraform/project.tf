@@ -14,6 +14,7 @@ resource "google_project_services" "project_services" {
 
   services = [
     "container.googleapis.com",
+    "dns.googleapis.com",
     # Compute and OSLogin are needed for GKE
     "compute.googleapis.com",
     "oslogin.googleapis.com"
