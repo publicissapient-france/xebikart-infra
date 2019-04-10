@@ -11,7 +11,7 @@ metadata:
   namespace: kube-system
 spec:
   progressDeadlineSeconds: 2147483647
-  replicas: 1
+  replicas: 1 # This is not ideal, but at least we can increase it later on!
   revisionHistoryLimit: 10
   selector:
     matchLabels:
