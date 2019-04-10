@@ -26,10 +26,10 @@ What tool should we use to do this?
 
 ## Considered Options
 
-- [Terraform](TODO link to section)
-- [Ansible](TODO link to section)
-- [Kubectl](TODO link to section)
-- [Helm](TODO link to section)
+- [Terraform](#terraform)
+- [Ansible](#ansible)
+- [Kubectl](#kubectl)
+- [Helm](#helm)
 
 ## Decision Outcome
 
