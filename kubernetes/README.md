@@ -58,3 +58,7 @@ It is exposed in 2 different ways:
 
 Both have DNS records pointing to them that are created according to the
 annotations used by ExternalDNS (See ADR/007).
+
+# External DNS
+
+https://github.com/kubernetes-incubator/external-dns/blob/master/docs/tutorials/gke.md
