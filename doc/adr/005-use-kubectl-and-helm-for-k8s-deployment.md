@@ -39,7 +39,7 @@ Chosen option: "A mix of **kubectl** and **Helm**", because:
   documented, widely-used, appropriate and up-to-date.
 - Helm fits best for complex stacks deployment and we're eager to try things
   such as Helm charts repositories!
-  
+
 Helm will be used as an alternative to `kubectl` in a second part, when we'll
 ramp up things and when we will need to deploy more complex stacks. The
 beginning will be `kubectl` for our own services, and Helm for
@@ -53,13 +53,14 @@ to be **provisionned with Helm requirements such as Tiller**.
 ### Terraform
 
 [Terraform](https://www.terraform.io/) is an infrastructure-as-code tool
-developed by [Hashicorp]() that has support for a [Kubernetes provider](TODO).
+developed by [Hashicorp](https://www.hashicorp.com/) that has support for a
+[Kubernetes
+provider](https://www.terraform.io/docs/providers/kubernetes/index.html).
 
 Pros:
 
 - Already used to spawn the underlying infrastructure on GCP (Projects, GKE
-  cluster,
-  etc)
+  cluster, etc)
 
 Cons:
 
@@ -68,9 +69,10 @@ Cons:
 
 ### Ansible
 
-[Ansible](https://www.ansible.com/) and its [Kubernetes modules](TODO) were a
-**No-GO** from the beginning since we're trying to avoid using Ansible for
-unappropriate use cases such as this one.  Talking to APIs such as the
+[Ansible](https://www.ansible.com/) and its [Kubernetes
+modules](https://docs.ansible.com/ansible/latest/modules/kubernetes_module.html)
+were a **No-GO** from the beginning since we're trying to avoid using Ansible
+for unappropriate use cases such as this one.  Talking to APIs such as the
 Kubernetes one is definitely not the job for which Ansible was made for.
 
 ### Kubectl
@@ -104,8 +106,10 @@ Pros:
 
 - Community-agreed tooling with a widespread use
 - Existing Helm charts for many open source software such as RabbitMQ which we
-  are planning to use (see [`rabbitmq`](TODO) and [`rabbitmq-ha`](TODO) stable
-  Helm charts)
+  are planning to use (see
+  [`rabbitmq`](https://github.com/helm/charts/tree/master/stable/rabbitmq) and
+  [`rabbitmq-ha`](https://github.com/helm/charts/tree/master/stable/rabbitmq-ha)
+  **stable** Helm charts)
 
 Cons:
 
@@ -120,3 +124,4 @@ approach.
 
 - <https://dzone.com/articles/terraform-vs-helm-for-kubernetes> has been useful
   to transmit a more concrete insight on Terraform vs Helm.
+- [Official Helm charts](https://github.com/helm/charts)
