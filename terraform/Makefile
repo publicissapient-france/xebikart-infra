@@ -1,7 +1,7 @@
 export DEPLOY_PROJECT=xebikart-deployment-infra
 export TERRAFORM_CMD = docker run -it --rm \
 			-v `pwd`:/root/terraform \
-			-v ${HOME}/.config:/root/.config \
+			-v gcloud-xebikart-config:/root/.config \
 			-w /root/terraform \
 			hashicorp/terraform:0.11.7
 
