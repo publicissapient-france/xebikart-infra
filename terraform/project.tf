@@ -17,6 +17,13 @@ resource "google_project_services" "project_services" {
     "dns.googleapis.com",
     # Compute and OSLogin are needed for GKE
     "compute.googleapis.com",
-    "oslogin.googleapis.com"
+    "oslogin.googleapis.com",
+    # Enable by whatever is running on the GKE cluster
+    "iam.googleapis.com",
+    "bigquery-json.googleapis.com",
+    "containerregistry.googleapis.com",
+    "pubsub.googleapis.com",
+    "iamcredentials.googleapis.com",
+    "storage-api.googleapis.com",
   ]
 }
