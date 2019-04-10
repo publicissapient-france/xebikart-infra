@@ -43,3 +43,8 @@ Service Account created in the RBAC configuration manifest).
 The <helm/rbac-config.yaml> is constructed according to the [official Helm
 documentation about RBAC
 configuration](https://github.com/helm/helm/blob/master/docs/rbac.md).
+
+# SmokeTest App
+
+This is a `hello-world` container used to check that service can correctly be
+exposed.
