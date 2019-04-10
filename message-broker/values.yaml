@@ -5,6 +5,7 @@ rabbitmq-ha:
   replicaCount: 2
   service:
     type: LoadBalancer
+    # Explicietly override clusterIP so its default value doesn't conflict with LoadBalancer
     clusterIP: null
   metadata:
     name: my-message-broker
