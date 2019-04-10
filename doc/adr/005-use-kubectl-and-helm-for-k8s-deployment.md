@@ -115,6 +115,7 @@ Cons:
 
 - Has some painful limitation according to some feedback we got
 - Need to setup Tiller on the K8s clusters
+- Existing charts often lack documentation which make it a bit painful to tune
 
 The main challenge with Helm will be to pre-provision the GKE clusters with
 Helm in a clean way, ideally not running by `helm init` but in a more "as-code"
