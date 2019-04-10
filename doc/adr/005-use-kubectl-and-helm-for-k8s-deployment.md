@@ -110,6 +110,7 @@ Pros:
   [`rabbitmq`](https://github.com/helm/charts/tree/master/stable/rabbitmq) and
   [`rabbitmq-ha`](https://github.com/helm/charts/tree/master/stable/rabbitmq-ha)
   **stable** Helm charts)
+- Better revision & lifecycle handling than raw `kubectl`
 
 Cons:
 
