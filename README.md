@@ -1,5 +1,7 @@
 # XebiKart - Infra
 
+[![CircleCI](https://circleci.com/gh/xebia-france/xebikart-infra.svg?style=svg&circle-token=5aaf15a8d4572523e390421420066392057bc8fe)](https://circleci.com/gh/xebia-france/xebikart-infra)
+
 This repository contains all the base infrastructure for XebiKart.
 
 # GCP
