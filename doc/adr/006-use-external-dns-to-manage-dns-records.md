@@ -1,4 +1,4 @@
-# [short title of solved problem and solution]
+# Use External-DNS to manage DNS records
 
 - Status: Accepted
 - Date: 2019-04-10
@@ -8,14 +8,13 @@
 
 ## Context and Problem Statement
 
-[Describe the context and problem statement, e.g., in free form using two to
-three sentences. You may want to articulate the problem in form of a question.
+We are deploying Kubernetes Services of type `LoadBalancer`, which in turns
+creates a Google Cloud Network Load Balancer on GCP, with the associated public
+IP address.
 
-Example:
-
-We want to ...
-
-What/Which ... should ... ?]
+In order to contact services using a name and not a raw IP address, we need to
+be able to create DNS records automatically and in a clean way, pointing on
+these GCLB.
 
 ## Decision Drivers <!-- optional -->
 
@@ -25,14 +24,16 @@ What/Which ... should ... ?]
 
 ## Considered Options
 
-- [option 1]
-- [option 2]
-- [option 3]
-- … <!-- numbers of options can vary -->
+- Terraform
+- External-DNS
 
 ## Decision Outcome
 
-Chosen option: "[option 1]", because [justification. e.g., only option, which meets k.o. criterion decision driver | which resolves force force | … | comes out best (see below)].
+Chosen option: **"External DNS"**, because:
+
+- TODO
+
+This is however not the most ideal thing because LoadBalancer and not Ingress.
 
 ### Positive Consequences <!-- optional -->
 
@@ -46,50 +47,29 @@ Chosen option: "[option 1]", because [justification. e.g., only option, which me
 
 ## Pros and Cons of the Options <!-- optional -->
 
-### [option 1]
+### Terraform
 
 [example | description | pointer to more information | …] <!-- optional -->
 
 Pros:
 
-- Good, because [argument a]
-- Good, because [argument b]
-- … <!-- numbers of pros and cons can vary -->
+- TODO
 
 Cons:
 
-- Bad, because [argument c]
-- … <!-- numbers of pros and cons can vary -->
+- TODO
 
-### [option 2]
+### External DNS
 
 [example | description | pointer to more information | …] <!-- optional -->
 
 Pros:
 
-- Good, because [argument a]
-- Good, because [argument b]
-- … <!-- numbers of pros and cons can vary -->
+- TODO
 
 Cons:
 
-- Bad, because [argument c]
-- … <!-- numbers of pros and cons can vary -->
-
-### [option 3]
-
-[example | description | pointer to more information | …] <!-- optional -->
-
-Pros:
-
-- Good, because [argument a]
-- Good, because [argument b]
-- … <!-- numbers of pros and cons can vary -->
-
-Cons:
-
-- Bad, because [argument c]
-- … <!-- numbers of pros and cons can vary -->
+- TODO
 
 ## Links <!-- optional -->
 
