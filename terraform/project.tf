@@ -18,6 +18,10 @@ resource "google_project_services" "project_services" {
     # Compute and OSLogin are needed for GKE
     "compute.googleapis.com",
     "oslogin.googleapis.com",
+    # Stackdriver
+    "monitoring.googleapis.com",
+    "logging.googleapis.com",
+    "stackdriver.googleapis.com",
     # Enable by whatever is running on the GKE cluster
     "iam.googleapis.com",
     "bigquery-json.googleapis.com",
