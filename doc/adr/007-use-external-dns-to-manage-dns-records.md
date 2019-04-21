@@ -1,4 +1,4 @@
-# Use External-DNS to manage DNS records
+# Use ExternalDNS to manage DNS records
 
 - Status: Accepted
 - Date: 2019-04-10
@@ -8,84 +8,87 @@
 
 ## Context and Problem Statement
 
-We are deploying Kubernetes Services of type `LoadBalancer` in order to expose
-services such as RabbitMQ. This creates a Google Cloud Network Load Balancer on
-GCP, with the associated public IP address.
+We are deploying **Kubernetes Services** of type `LoadBalancer` in order to
+expose services such as RabbitMQ. This creates a Google Cloud Network Load
+Balancer on GCP, with the associated public IP address.
 
-In order to contact services using a name and not a raw IP address, we need to
-be able to create DNS records automatically and in a clean way, pointing on
-these GCLB.
+In order to **connect to services using a name** and not a raw IP address, we
+need to be able to **create DNS records** automatically and in a clean way,
+pointing on these GCLB.
 
 ## Decision Drivers <!-- optional -->
 
-- [driver 1, e.g., a force, facing concern, …]
-- [driver 2, e.g., a force, facing concern, …]
-- … <!-- numbers of drivers can vary -->
+- Ease of use for developers writing their Kubernetes manifests to expose
+  Services
+- Ability to plug on Google CloudDNS and potentially other providers
+- Must be dynamic
 
 ## Considered Options
 
-- Terraform
-- External-DNS
+- [Terraform](#terraform)
+- [ExternalDNS](#externaldns)
+- [Mate](#mate)
 
 ## Decision Outcome
 
-Chosen option: **"External DNS"**, because:
+Chosen option: **"ExternalDNS"**, because:
 
-- TODO
+- Is directly uses **annotations** on Kubernetes Services and Ingress to know
+  what records to add and to which IP they should point. Therefore, it enable
+  people to define their own records in their K8s manifests **without having to
+  define anything in another repo**.
+- It is maintained, wealthy and keeps growing
+- It is clean and answer our need perfectly
 
-This is however not the most ideal thing because LoadBalancer and not Ingress.
+However, we still didn't test it for Ingresses.
 
-### Positive Consequences <!-- optional -->
-
-- [e.g., improvement of quality attribute satisfaction, follow-up decisions required, …]
-- …
-
-### Negative Consequences <!-- optional -->
-
-- [e.g., compromising quality attribute, follow-up decisions required, …]
-- …
-
-## Pros and Cons of the Options <!-- optional -->
+## Pros and Cons of the Options
 
 ### Terraform
 
-[example | description | pointer to more information | …] <!-- optional -->
+Since [Terraform](https://www.terraform.io/) has a [Google CloudDNS record set
+module](https://www.terraform.io/docs/providers/google/r/dns_record_set.html),
+we are able to create these records using Terraform.
 
 Pros:
 
-- TODO
+- No new tool in the stack
 
 Cons:
 
-- TODO
+- The configuration would not be dynamic. We would have to track Services GCLB
+  IPs manually and create corresponding records in Terraform. **This is a huge
+  deal breaker**.
 
-### External DNS
+### ExternalDNS
 
-[example | description | pointer to more information | …] <!-- optional -->
+[ExternalDNS](https://github.com/xebia-france/xebikart-infra/pull/13) allows
+configuring external DNS servers (AWS Route53, Google CloudDNS and others) for
+Kubernetes Ingresses and Services.
 
 Pros:
 
-- TODO
+- The _Google CloudDNS_ provider of ExternalDMS is considered _Stable_ (it's
+  actually the only one beside AWS Route53)
+- ExternalDNS is wealthy among the community: lots of updates, was part of
+  Kubernetes Incubator before it (the Kubernetes Incubator) was stopped.
 
 Cons:
 
-- TODO
+- None?
 
-## Links <!-- optional -->
-
-- [Link type] [Link to ADR] <!-- example: Refined by [ADR-0005](0005-example.md) -->
-- … <!-- numbers of links can vary -->
+### Mate
 
 
+[Mate](https://github.com/linki/mate) is also made to manage AWS Route53 and
+Google CloudDNS records for Kubernetes services and ingresses. It was part of
+[the Zalando incubator](https://github.com/zalando-incubator/)
 
-https://github.com/kubernetes-incubator/external-dns
+Pros:
 
-Configure external DNS servers (AWS Route53, Google CloudDNS and others) for Kubernetes Ingresses and Services
-Google Cloud DNS is Stable
+- Mate was the premice of dynamic Cloud providers DNS configuration from
+  Kubernetes objects
 
+Cons:
 
-https://github.com/linki/mate
-deprecated
-Zalando Incubator
-
-wealthy
+- mate is now deprecated...
