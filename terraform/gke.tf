@@ -9,6 +9,7 @@ resource "google_container_cluster" "gke-cluster" {
   name   = "xebikart-gke-${var.environment}-1"
   region = "europe-west1"
   project = "${google_project.xebikart.project_id}"
+  min_master_version = "1.12.7-gke.7"
   initial_node_count = 1
 
 
