@@ -8,9 +8,9 @@
 
 ## Context and Problem Statement
 
-We are deploying Kubernetes Services of type `LoadBalancer`, which in turns
-creates a Google Cloud Network Load Balancer on GCP, with the associated public
-IP address.
+We are deploying Kubernetes Services of type `LoadBalancer` in order to expose
+services such as RabbitMQ. This creates a Google Cloud Network Load Balancer on
+GCP, with the associated public IP address.
 
 In order to contact services using a name and not a raw IP address, we need to
 be able to create DNS records automatically and in a clean way, pointing on
@@ -75,3 +75,17 @@ Cons:
 
 - [Link type] [Link to ADR] <!-- example: Refined by [ADR-0005](0005-example.md) -->
 - … <!-- numbers of links can vary -->
+
+
+
+https://github.com/kubernetes-incubator/external-dns
+
+Configure external DNS servers (AWS Route53, Google CloudDNS and others) for Kubernetes Ingresses and Services
+Google Cloud DNS is Stable
+
+
+https://github.com/linki/mate
+deprecated
+Zalando Incubator
+
+wealthy
