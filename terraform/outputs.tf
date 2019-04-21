@@ -13,3 +13,11 @@ output "gcloud command to get GKE credentials" {
 output "DNS NameServers for the xebik.art zone" {
   value = "${google_dns_managed_zone.xebikart-zone.name_servers}"
 }
+
+output "GKE latest version - master" {
+  value = "${data.google_container_engine_versions.gke-version-euw1.latest_master_version}"
+}
+
+output "GKE latest version - nodes" {
+  value = "${data.google_container_engine_versions.gke-version-euw1.latest_node_version}"
+}

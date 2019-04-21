@@ -1,3 +1,9 @@
+# GKE Cluster version
+data "google_container_engine_versions" "gke-version-euw1" {
+  project = "${google_project.xebikart.project_id}"
+  region        = "europe-west1"
+}
+
 # The main GKE cluster. This is essentially the main purpose of all of this
 resource "google_container_cluster" "gke-cluster" {
   name   = "xebikart-gke-${var.environment}-1"
