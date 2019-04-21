@@ -47,4 +47,5 @@ configuration](https://github.com/helm/helm/blob/master/docs/rbac.md).
 # SmokeTest App
 
 This is a `hello-world` container used to check that service can correctly be
-exposed.
+exposed. It is deployed as part of the infrastructure stack since it is used to
+check that everything is ok.
