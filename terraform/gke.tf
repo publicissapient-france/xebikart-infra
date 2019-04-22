@@ -28,6 +28,12 @@ resource "google_container_cluster" "gke-cluster" {
     ]
   }
 
+  addons_config {
+    kubernetes_dashboard {
+      disabled = false
+    }
+  }
+
   # Wait for GKE API to be enabled before trying to create the cluster
   depends_on = [
     "google_project_services.project_services"
