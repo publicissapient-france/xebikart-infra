@@ -4,6 +4,7 @@ metadata:
   name: smoketest-ingress
   annotations:
     external-dns.alpha.kubernetes.io/hostname: ingress.smoke.xebik.art,smoke.xebik.art
+    external-dns.alpha.kubernetes.io/ttl: "60"
 spec:
   backend:
     serviceName: smoketest-nodeport
