@@ -21,3 +21,7 @@ output "GKE latest version - master" {
 output "GKE latest version - nodes" {
   value = "${data.google_container_engine_versions.gke-version-euw1.latest_node_version}"
 }
+
+output "GKE addons config" {
+  value = "${google_container_cluster.gke-cluster.addons_config}"
+}
