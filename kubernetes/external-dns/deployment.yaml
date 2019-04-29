@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: external-dns
+spec:
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: external-dns
+    spec:
+      serviceAccountName: external-dns
+      containers:
+      - name: external-dns
+        image: registry.opensource.zalan.do/teapot/external-dns:latest
+        args:
+          - --source=service
+          - --source=ingress
+          #- --domain-filter=xebik.art # will make ExternalDNS see only the hosted zones matching provided domain, omit to process all available hosted zones
+          - --provider=google
+          # `--google-project` is used to specify a project different from the
+          # one external-dns is running inside
+          - --google-project=xebikart-dev-1
+          # `--policy=upsert-only` prevents ExternalDNS from deleting any
+          # records
+          # Omit to enable full synchronization - We don't want this for now
+          - --policy=upsert-only
+          - --registry=txt
+          - --txt-owner-id=my-identifier

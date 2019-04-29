@@ -58,3 +58,19 @@ It is exposed in 2 different ways:
 
 Both have DNS records pointing to them that are created according to the
 annotations used by ExternalDNS (See ADR/007).
+
+# External DNS
+
+The K8s external Services are mainly defined with the `type: LoadBalancer`
+property. This makes GKE create a [Google Cloud Load Balancer (GCLB)](TODO) for it and
+add relevant pods (according to selectors, as usual with Services) as backends
+of this GCLB.
+
+However, acessing public Services directly with the IP of the Load Balancer is
+neither nice nor practical. **We have to create DNS records pointing to these
+GCLB in order to access public services in a named fashion**.
+
+This is done with [External-DNS](TODO link) TODO Description. See
+[ADR/TODO](TODO) for reasons behind this choice.
+
+https://github.com/kubernetes-incubator/external-dns/blob/master/docs/tutorials/gke.md
