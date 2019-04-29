@@ -43,3 +43,18 @@ Service Account created in the RBAC configuration manifest).
 The <helm/rbac-config.yaml> is constructed according to the [official Helm
 documentation about RBAC
 configuration](https://github.com/helm/helm/blob/master/docs/rbac.md).
+
+# SmokeTest App
+
+This is a `hello-world` container used to check that service can correctly be
+exposed. It is deployed as part of the infrastructure stack since it is used to
+check that everything is ok.
+
+It is exposed in 2 different ways:
+
+- With a `Service` of type `LoadBalancer` : <http://service.smoke.xebik.art>
+- With an `Ingress` backed by a `Service` of type `NodePort` :
+  <http://ingress.smoke.xebik.art> (also on <http://smoke.xebik.art>)
+
+Both have DNS records pointing to them that are created according to the
+annotations used by ExternalDNS (See ADR/007).
