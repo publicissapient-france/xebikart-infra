@@ -12,6 +12,8 @@ resource "google_container_cluster" "gke-cluster" {
   min_master_version = "1.12.7-gke.7"
   node_version = "1.12.7-gke.7"
   initial_node_count = 1
+  monitoring_service = "monitoring.googleapis.com/kubernetes"
+  logging_service = "logging.googleapis.com/kubernetes"
 
 
   node_config {
