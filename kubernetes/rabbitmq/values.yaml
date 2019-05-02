@@ -7,6 +7,8 @@ rabbitmq-ha:
     type: LoadBalancer
     # Explicietly override clusterIP so its default value doesn't conflict with LoadBalancer
     clusterIP: null
+    annotations:
+      external-dns.alpha.kubernetes.io/hostname: rabbitmq.xebik.art
   metadata:
     name: my-message-broker
   labels:
