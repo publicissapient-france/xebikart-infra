@@ -97,3 +97,27 @@ repeating these manual steps too much for future projects/clusters.
 
 You can access it on the [xebikart-deployment-infra Stackdriver
 workspace](https://app.google.stackdriver.com/?project=xebikart-deployment-infra)
+
+# Deployment
+
+1. Deploy Terraform base infra with Google Cloud Deployment Manager
+2. Deploy infrastructure using Terraform
+3. Deploy Kubernetes services
+
+## RabbitMQ
+
+Note: the current RabbitMQ release on the GKE cluster is name
+`rabbitmq-ha-release-4` for some iteration reasons. This might be changed
+later.
+
+Step #1 - Setup Helm chart dependency:
+
+`helm dependency build rabbitmq`
+
+Step #2 - Install/Deploy RabbitMQ with Helm:
+
+`helm install rabbitmq -n rabbitmq-ha-release-4`
+
+Step #3 - Upgrade the RabbitMQ deployment:
+
+`helm upgrade rabbitmq-ha-release-4 rabbitmq`
