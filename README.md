@@ -97,3 +97,7 @@ repeating these manual steps too much for future projects/clusters.
 
 You can access it on the [xebikart-deployment-infra Stackdriver
 workspace](https://app.google.stackdriver.com/?project=xebikart-deployment-infra)
+
+# Machine Learning - Vagrant config for virtual machine
+
+To ensure easy creation of functional Machine Lerning environment, a Vagrant tool is used to create and provision a fresh-new virtual machine that is ready to use. See the section's README.md for further information.
