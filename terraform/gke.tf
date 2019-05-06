@@ -24,6 +24,9 @@ resource "google_container_cluster" "gke-cluster" {
     kubernetes_dashboard {
       disabled = false
     }
+    istio_config {
+      disabled = false
+    }
   }
 
   # Wait for GKE API to be enabled before trying to create the cluster
