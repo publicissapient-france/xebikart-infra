@@ -1,6 +1,6 @@
 provider "google" {
   region  = "europe-west1"
-  version = "~> 2.5"
+  version = "2.5.1"
 }
 
 terraform {
