@@ -1,0 +1,42 @@
+# This values file add TLS support for RabbbitMQ chart using custom certificates. Warning: This are self-signed
+# certificates so they're are no recommended for prod-like environments
+# FYI: this certificates have been created using tls-gen: https://github.com/michaelklishin/tls-gen
+
+# Custom secret configuration
+global:
+  customSecret: true # Duplicate from rabbitmq-ha
+  customSecretName: "custom-broker-secret"
+  certificates:
+    cacertFilePath: certificates/server/ca_certificate.pem
+    certFilePath: certificates/server/server_certificate.pem
+    keyFilePath: certificates/server/server_key.pem
+
+# Users
+rabbitmq:
+  existingSecret: "custom-broker-secret"
+  rabbitmqUsername: "xebikart"
+  rabbitmqPassword: "xebikart"
+  rabbitmqVhost: "/"
+  rabbitmqCert:
+    enabled: true
+    existingSecret: "custom-broker-secret"
+  rabbitmqAmqpsSupport:
+    enabled: true
+    config: |
+      ssl_options.verify = verify_peer
+      ssl_options.fail_if_no_peer_cert = true
+  rabbitmqAuth:
+    enabled: true
+    config: |
+      auth_mechanisms.1 = EXTERNAL
+  # User authentication is done with TLS certificates
+  definitions:
+    users: |-
+    permissions: |-
+    queues: |-
+      {"name":"xebikart-events", "vhost":"/", "durable":true, "auto_delete":false, "arguments":{}}
+    exchanges: |-
+      {"name":"xebikart-exchange","vhost":"/","type":"direct","durable":true,"auto_delete":false,"internal":false,"arguments":{}}
+    bindings: |-
+      {"source":"xebikart-binding", "vhost":"/", "destination":"xebikart-events", "destination_type":"queue", "routing_key":"myKey", "arguments":{}}
+
