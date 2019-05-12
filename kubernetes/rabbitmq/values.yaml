@@ -1,5 +1,5 @@
 # Config for rabbitmq-ha (alias)
-rabbitmq-ha:
+rabbitmq:
   replicaCount: 2
   service:
     type: LoadBalancer
