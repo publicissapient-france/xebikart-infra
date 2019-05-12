@@ -1,11 +1,9 @@
 # Config for rabbitmq-ha (alias)
-global:
-  rabbitmqMqttPort: 1883
 rabbitmq-ha:
   replicaCount: 2
   service:
     type: LoadBalancer
-    # Explicietly override clusterIP so its default value doesn't conflict with LoadBalancer
+    # Explicitly override clusterIP so its default value doesn't conflict with LoadBalancer
     clusterIP: null
     annotations:
       external-dns.alpha.kubernetes.io/hostname: rabbitmq.xebik.art
@@ -15,25 +13,3 @@ rabbitmq-ha:
     app: message-broker
   rabbitmqMQTTPlugin:
     enabled: true
-  rabbitmqUsername: xebikart
-  rabbitmqPassword: xebikart
-  extraPlugins: |
-    rabbitmq_shovel,
-    rabbitmq_shovel_management,
-    rabbitmq_federation,
-    rabbitmq_federation_management,
-    rabbitmq_auth_mechanism_ssl,
-    rabbitmq_trust_store,
-  definitions:
-    users: |-
-      {"name": "xebikart1", "password": "xebikart1", "tags": "kart"},
-      {"name": "xebikart2", "password": "xebikart2", "tags": "kart"}
-    permissions: |-
-      {"user": "xebikart1", "vhost": "/", "configure": ".*", "write": ".*", "read": ".*"},
-      {"user": "xebikart2", "vhost": "/", "configure": ".*", "write": ".*", "read": ".*"}
-    queues: |-
-      {"name":"xebikart-events", "vhost":"/", "durable":true, "auto_delete":false, "arguments":{}}
-    exchanges: |-
-      {"name":"xebikart-exchange","vhost":"/","type":"direct","durable":true,"auto_delete":false,"internal":false,"arguments":{}}
-    bindings: |-
-      {"source":"xebikart-binding", "vhost":"/", "destination":"xebikart-events", "destination_type":"queue", "routing_key":"myKey", "arguments":{}}
