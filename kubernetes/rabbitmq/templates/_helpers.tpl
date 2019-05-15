@@ -6,8 +6,8 @@ users, virtual hosts, permissions and parameters) to load by the management plug
 {
   "users": [
     {
-      "name": {{ .Values.rabbitmq.rabbitmqUsername | quote }},
-      "password": {{ .Values.rabbitmq.rabbitmqPassword | quote }},
+      "name": {{ .Values.rabbitmq.managementUsername | quote }},
+      "password": {{ .Values.rabbitmq.managementPassword | quote }},
       "tags": "management"
     },
     {
