@@ -15,14 +15,13 @@ rabbitmq:
     name: my-message-broker
   labels:
     app: message-broker
-  rabbitmqMQTTPlugin:
-    enabled: true
   rabbitmqUsername: "xebikart"
   rabbitmqPassword: "password"
   managementUsername: "management"
   managementPassword: "management"
   rabbitmqVhost: "/"
   rabbitmqMQTTPlugin:
+    enabled: true
     config: |-
       mqtt.allow_anonymous  = false
       mqtt.listeners.ssl.default = 8883
@@ -32,6 +31,7 @@ rabbitmq:
   rabbitmqCert:
     enabled: true
     existingSecret: "custom-tls-certificate-secret"
+
   rabbitmqAmqpsSupport:
     enabled: true
     config: |
