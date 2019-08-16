@@ -15,6 +15,10 @@ rabbitmq-ha:
     app: message-broker
   rabbitmqMQTTPlugin:
     enabled: true
+    # TODO: handler storage: https://www.rabbitmq.com/mqtt.html
+    config: |
+      mqtt.allow_anonymous = false
+      mqtt.exchange = xebikart-exchange
   rabbitmqUsername: xebikart
   rabbitmqPassword: xebikart
   extraPlugins: |
@@ -31,9 +35,11 @@ rabbitmq-ha:
     permissions: |-
       {"user": "xebikart1", "vhost": "/", "configure": ".*", "write": ".*", "read": ".*"},
       {"user": "xebikart2", "vhost": "/", "configure": ".*", "write": ".*", "read": ".*"}
-    queues: |-
-      {"name":"xebikart-events", "vhost":"/", "durable":true, "auto_delete":false, "arguments":{}}
     exchanges: |-
-      {"name":"xebikart-exchange","vhost":"/","type":"direct","durable":true,"auto_delete":false,"internal":false,"arguments":{}}
+      {"name":"xebikart-exchange","vhost":"/","type":"topic","durable":true,"auto_delete":false,"internal":false,"arguments":{}}
     bindings: |-
-      {"source":"xebikart-binding", "vhost":"/", "destination":"xebikart-events", "destination_type":"queue", "routing_key":"myKey", "arguments":{}}
+      {"source":"xebikart-exchange", "vhost":"/", "destination":"kart-events", "destination_type":"queue", "routing_key":"events.kart", "arguments":{}},
+      {"source":"xebikart-exchange", "vhost":"/", "destination":"race-events", "destination_type":"queue", "routing_key":"events.race", "arguments":{}}
+    queues: |-
+      {"name":"kart-events", "vhost":"/", "durable":true, "auto_delete":false, "arguments":{}},
+      {"name":"race-events", "vhost":"/", "durable":true, "auto_delete":false, "arguments":{}}
