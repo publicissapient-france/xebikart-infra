@@ -19,8 +19,6 @@ rabbitmq-ha:
     config: |
       mqtt.allow_anonymous = false
       mqtt.exchange = xebikart-exchange
-  rabbitmqUsername: xebikart
-  rabbitmqPassword: xebikart
   extraPlugins: |
     rabbitmq_shovel,
     rabbitmq_shovel_management,

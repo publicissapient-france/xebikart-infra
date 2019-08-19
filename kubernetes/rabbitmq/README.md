@@ -42,7 +42,7 @@ Who cares?
 
 From repository root directory:
 
-`helm install message-broker -n <release name>`
+`helm install message-broker -n <release name> --set rabbitmq-ha.rabbitmqUsername=<admin_user>,rabbitmq-ha.rabbitmqPassword=<adminPassword>`
 
 This command will ask Tiller on your k8s cluster to deploy our application. After that, `tiller` will
 ask to the cluster for the current state in order to call Kubernetes API server to achieve the desired state.
