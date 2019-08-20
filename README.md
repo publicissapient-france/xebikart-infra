@@ -116,8 +116,8 @@ Step #1 - Setup Helm chart dependency:
 
 Step #2 - Install/Deploy RabbitMQ with Helm:
 
-`helm install rabbitmq -n rabbitmq-ha-release-4`
+`helm install rabbitmq -n <release-name> --set rabbitmq-ha.rabbitmqUsername=<admin_user>,rabbitmq-ha.rabbitmqPassword=<adminPassword>`
 
 Step #3 - Upgrade the RabbitMQ deployment:
 
-`helm upgrade rabbitmq-ha-release-4 rabbitmq`
+`helm upgrade <release_name> rabbitmq`
