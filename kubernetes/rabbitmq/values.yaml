@@ -15,8 +15,10 @@ rabbitmq-ha:
     app: message-broker
   rabbitmqMQTTPlugin:
     enabled: true
-  rabbitmqUsername: xebikart
-  rabbitmqPassword: xebikart
+    # TODO: handler storage: https://www.rabbitmq.com/mqtt.html
+    config: |
+      mqtt.allow_anonymous = false
+      mqtt.exchange = xebikart-exchange
   extraPlugins: |
     rabbitmq_shovel,
     rabbitmq_shovel_management,
@@ -27,13 +29,17 @@ rabbitmq-ha:
   definitions:
     users: |-
       {"name": "xebikart1", "password": "xebikart1", "tags": "kart"},
-      {"name": "xebikart2", "password": "xebikart2", "tags": "kart"}
+      {"name": "xebikart2", "password": "xebikart2", "tags": "kart"},
+      {"name": "xebikart3", "password": "xebikart3", "tags": "kart"}
     permissions: |-
-      {"user": "xebikart1", "vhost": "/", "configure": ".*", "write": ".*", "read": ".*"},
-      {"user": "xebikart2", "vhost": "/", "configure": ".*", "write": ".*", "read": ".*"}
-    queues: |-
-      {"name":"xebikart-events", "vhost":"/", "durable":true, "auto_delete":false, "arguments":{}}
+      {"user": "xebikart1", "vhost": "/", "configure": "mqtt-subscription-*/*", "write": ".*", "read": ".*"},
+      {"user": "xebikart2", "vhost": "/", "configure": "mqtt-subscription-*/*", "write": ".*", "read": ".*"},
+      {"user": "xebikart3", "vhost": "/", "configure": "mqtt-subscription-*/*", "write": ".*", "read": ".*"}
     exchanges: |-
-      {"name":"xebikart-exchange","vhost":"/","type":"direct","durable":true,"auto_delete":false,"internal":false,"arguments":{}}
+      {"name":"xebikart-exchange","vhost":"/","type":"topic","durable":true,"auto_delete":false,"internal":false,"arguments":{}}
     bindings: |-
-      {"source":"xebikart-binding", "vhost":"/", "destination":"xebikart-events", "destination_type":"queue", "routing_key":"myKey", "arguments":{}}
+      {"source":"xebikart-exchange", "vhost":"/", "destination":"kart-events", "destination_type":"queue", "routing_key":"events.kart", "arguments":{}},
+      {"source":"xebikart-exchange", "vhost":"/", "destination":"race-events", "destination_type":"queue", "routing_key":"events.race", "arguments":{}}
+    queues: |-
+      {"name":"kart-events", "vhost":"/", "durable":true, "auto_delete":false, "arguments":{}},
+      {"name":"race-events", "vhost":"/", "durable":true, "auto_delete":false, "arguments":{}}
