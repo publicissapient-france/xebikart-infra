@@ -1,10 +1,10 @@
-full:: namespaces rbac helm external-dns smoketest
+full:: namespaces rbac helm external-dns smoketest rabbitmq
 
 
 namespaces::
 	@echo -e "\n\e[44m# Create namespaces\e[0m"
 	@echo -n "→ "
-	gkube apply -f namespaces/*-ns.yaml
+	gkube apply -f namespaces
 
 rbac::
 	@echo -e "\n\e[44m# Setup people RBAC to be able to deploy remaining things\e[0m"
@@ -36,4 +36,6 @@ smoketest::
 	gkube apply -n apps-production -f smoketest-app/ingress.yaml
 
 rabbitmq::
-	# TODO
+	@echo -e "\n\e[44m# Deploy RabbitMQ\e[0m"
+	@echo -n "→ "
+	helm install --namespace common-infra-production -n xebikart-rabbitmq-ha rabbitmq
