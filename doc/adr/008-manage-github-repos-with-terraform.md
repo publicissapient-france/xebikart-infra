@@ -4,6 +4,7 @@
 - Date: 2019-09-DD
 - Deciders:
     - achotard
+    - jpthiery
 
 ## Context and Problem Statement
 
