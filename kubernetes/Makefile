@@ -29,11 +29,11 @@ external-dns::
 smoketest::
 	@echo -e "\n\e[44m# Deploy Smoketest app\e[0m"
 	@echo -n "→ "
-	gkube apply -f smoketest-app/deployment.yaml
+	gkube apply -n apps-production -f smoketest-app/deployment.yaml
 	@echo -n "→ "
-	gkube apply -f smoketest-app/loadbalancer.yaml
+	gkube apply -n apps-production -f smoketest-app/loadbalancer.yaml
 	@echo -n "→ "
-	gkube apply -f smoketest-app/ingress.yaml
+	gkube apply -n apps-production -f smoketest-app/ingress.yaml
 
 rabbitmq::
 	# TODO
