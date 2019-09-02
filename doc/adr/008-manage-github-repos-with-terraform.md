@@ -5,6 +5,7 @@
 - Deciders:
     - achotard
     - jpthiery
+    - jmartinsanchez
 
 ## Context and Problem Statement
 
