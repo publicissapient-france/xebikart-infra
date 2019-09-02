@@ -2,9 +2,18 @@
 
 [![CircleCI](https://circleci.com/gh/xebia-france/xebikart-infra.svg?style=svg&circle-token=5aaf15a8d4572523e390421420066392057bc8fe)](https://circleci.com/gh/xebia-france/xebikart-infra)
 
-This repository contains all the base infrastructure for XebiKart.
+This repository contains all the base infrastructure for XebiKart, including
+but not limited to:
 
-# GCP
+- The Kubernetes (GKE) cluster(s)
+- The infrastructure components running on these K8s clusters:
+    - DNS records controllers
+    - TLS certificates controllers
+    - Common message broker for applications
+    - Monitoring
+    - ...
+
+## GCP - Layout
 
 The entire infrastructure is created under the [XebiKart
 folder](https://console.cloud.google.com/projectselector2/home/dashboard?folder=770972260944&supportedpurview=project&project&organizationId)
@@ -12,22 +21,39 @@ located as follow :
 
 `xebia.fr (Org) > Conferences > XebiCon > Xebikart`
 
-# Terraform
+## Terraform
+
+We use [Terraform](https://www.terraform.io/) to manage the entire
+infrastructure as code. You can take a look at the [ADR #003](https://github.com/xebia-france/xebikart-infra/blob/master/doc/adr/003-use-terraform-for-infrastructure-deployment.md)
+for more details about this choice.
+
+### Requirements
+
+You obviously need [Terraform to be
+installed](https://learn.hashicorp.com/terraform/getting-started/install.html)
+to use it.
+
+Terraform needs to authenticate on GCP in order to manages resources through
+GCP APIs. Terraform knows how to use your `gcloud` CLI credentials, so you can
+simply run this to be able to run Terraform locally from your machine:
 
 ```
 gcloud auth application-default login
 gcloud auth login
 ```
 
-For more advanced authentication methods, please see the [GCP documentation
-about this topic] (https://cloud.google.com/docs/authentication/production)
-:wink:
+For more advanced Terraform/GCP authentication methods, please see the [GCP documentation
+about this topic] (https://cloud.google.com/docs/authentication/production).
 
-## Inputs
+You may also need your own GitHub API token in order to run the Terraform stff
+found in `repositories`. Read the README in this directory to know more about
+it.
+
+#### Inputs
 
 The concepts of
 [locals](https://www.terraform.io/docs/configuration/locals.html) and
-[variables](https://www.terraform.io/docs/configuration/variables.html) de
+[variables](https://www.terraform.io/docs/configuration/variables.html) of
 Terraform are used to "configure" the infrastructure that is being created.
 
 All of these settings can be found under
@@ -37,14 +63,14 @@ All of these settings can be found under
 
 [xebikart-deployment-infra](https://console.cloud.google.com/home/dashboard?project=xebikart-deployment-infra&organizationId=&folder=&supportedpurview=project)
 
-# Kubernetes
+## Kubernetes
 
 Since we will maybe use multiple Kubernetes clusters at some point, you might
 find useful the [official Kubernetes documentation on configuring access to
 multiple clusters for
 kubectl](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/)
 
-# Monitoring
+## Monitoring
 
 The monitoring is done thanks to
 [Stackdriver](https://cloud.google.com/stackdriver/). In short Stackdriver is
@@ -98,7 +124,7 @@ repeating these manual steps too much for future projects/clusters.
 You can access it on the [xebikart-deployment-infra Stackdriver
 workspace](https://app.google.stackdriver.com/?project=xebikart-deployment-infra)
 
-# Deployment
+## How to deploy everything from scratch
 
 1. Deploy Terraform base infra with Google Cloud Deployment Manager
 2. Deploy infrastructure using Terraform
