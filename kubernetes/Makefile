@@ -1,5 +1,6 @@
 full:: namespaces rbac helm external-dns smoketest rabbitmq
 
+RABBITMQ_HELM_RELEASE_NAME=xebikart-rabbitmq-ha
 
 namespaces::
 	@echo -e "\n\e[44m# Create namespaces\e[0m"
@@ -22,9 +23,9 @@ helm::
 external-dns::
 	@echo -e "\n\e[44m# Deploy External-DNS\e[0m"
 	@echo -n "→ "
-	gkube apply -f external-dns/rbac-config.yaml
+	gkube apply -n common-infra-production -f external-dns/rbac-config.yaml
 	@echo -n "→ "
-	gkube apply -f external-dns/deployment.yaml
+	gkube apply -n common-infra-production -f external-dns/deployment.yaml
 
 smoketest::
 	@echo -e "\n\e[44m# Deploy Smoketest app\e[0m"
@@ -38,4 +39,5 @@ smoketest::
 rabbitmq::
 	@echo -e "\n\e[44m# Deploy RabbitMQ\e[0m"
 	@echo -n "→ "
-	helm install --namespace common-infra-production -n xebikart-rabbitmq-ha rabbitmq
+	helm install rabbitmq --namespace common-infra-production -n ${RABBITMQ_HELM_RELEASE_NAME} -f rabbitmq/values.yaml
+	#helm upgrade ${RABBITMQ_HELM_RELEASE_NAME} rabbitmq --namespace common-infra-production -f rabbitmq/values.yaml
