@@ -25,4 +25,4 @@ spec:
           # Enable full synchronization. Set to `upsert-only` to prevent ExternalDNS from deleting any records
           - --policy=sync
           - --registry=txt
-          - --txt-owner-id=my-identifier
+          - --txt-owner-id=xebikart-externaldns
