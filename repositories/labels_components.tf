@@ -1,25 +1,25 @@
 # Labels - Components
 
-resource "github_issue_label" "xebikart-infra-label-k8s" {
+module "xebikart-infra_label_component-k8s" {
+  source = "./labels-modules/wrappers/component"
   repository = "${data.github_repository.xebikart-infra-repo.name}"
 
-  name       = "component/k8s"
-  description = "Component - Kubernetes cluster itself"
-  color      = "${local.label_color_component}"
+  component_name = "k8s"
+  component_description = "Kubernetes cluster itself"
 }
 
-resource "github_issue_label" "xebikart-infra-label-rabbitmq" {
+module "xebikart-infra_label_component-rabbitmq" {
+  source = "./labels-modules/wrappers/component"
   repository = "${data.github_repository.xebikart-infra-repo.name}"
 
-  name       = "component/rabbitmq"
-  description = "Component - RabbitMQ"
-  color      = "${local.label_color_component}"
+  component_name = "rabbitmq"
+  component_description = "RabbitMQ cluster"
 }
 
-resource "github_issue_label" "xebikart-infra-label-smoketestapp" {
+module "xebikart-infra_label_component-smoketestapp" {
+  source = "./labels-modules/wrappers/component"
   repository = "${data.github_repository.xebikart-infra-repo.name}"
 
-  name       = "component/smoketest-app"
-  description = "Component - Smoketest App"
-  color      = "${local.label_color_component}"
+  component_name = "smoketest-app"
+  component_description = "Smoketest Application"
 }
