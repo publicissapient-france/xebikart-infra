@@ -30,11 +30,13 @@ rabbitmq-ha:
     users: |-
       {"name": "xebikart1", "password": "xebikart1", "tags": "kart"},
       {"name": "xebikart2", "password": "xebikart2", "tags": "kart"},
-      {"name": "xebikart3", "password": "xebikart3", "tags": "kart"}
+      {"name": "xebikart3", "password": "xebikart3", "tags": "kart"},
+      {"name": "backend", "password": "backend", "tags": "backend"}
     permissions: |-
       {"user": "xebikart1", "vhost": "/", "configure": "mqtt-subscription-*/*", "write": ".*", "read": ".*"},
       {"user": "xebikart2", "vhost": "/", "configure": "mqtt-subscription-*/*", "write": ".*", "read": ".*"},
-      {"user": "xebikart3", "vhost": "/", "configure": "mqtt-subscription-*/*", "write": ".*", "read": ".*"}
+      {"user": "xebikart3", "vhost": "/", "configure": "mqtt-subscription-*/*", "write": ".*", "read": ".*"},
+      {"user": "backend", "vhost": "/", "configure": ".*", "write": ".*", "read": ".*"}
     exchanges: |-
       {"name":"xebikart-exchange","vhost":"/","type":"topic","durable":true,"auto_delete":false,"internal":false,"arguments":{}}
     bindings: |-
