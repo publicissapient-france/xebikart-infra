@@ -23,3 +23,11 @@ module "xebikart-infra_label_component-smoketestapp" {
   component_name = "smoketest-app"
   component_description = "Smoketest Application"
 }
+
+module "xebikart-infra_label_component-externaldns" {
+  source = "./labels-modules/wrappers/component"
+  repository = "${data.github_repository.xebikart-infra-repo.name}"
+
+  component_name = "external-dns"
+  component_description = "ExternalDNS"
+}
