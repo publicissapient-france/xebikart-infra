@@ -2,18 +2,13 @@ data "github_repository" "xebikart-infra-repo" {
   full_name = "xebia-france/xebikart-infra"
 }
 
-resource "github_repository" "xebikart-links-repo" {
-  # Note : project will be Open Source by default
-  name        = "xebikart-links"
-  description = "XebiKart - Useful links webpage"
-  homepage_url = "http://links.xebik.art"
+module "xebikart-links-github-repo" {
+  source = "./modules/xebikart-github-repo"
 
-  has_projects = false
-  has_wiki = false
+  repo_name = "links"
+  repo_description = "Useful links webpage"
+  repo_site_url = "http://links.xebik.art"
+
   allow_merge_commit = false
-  topics = [
-    "xebicon19",
-    "xebikart",
-    "links"
-  ]
+  additional_topics = ["links"]
 }
