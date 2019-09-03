@@ -1,0 +1,16 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: apps-production
+  labels:
+    name: apps-production
+    istio-injection: enabled
+---
+apiVersion: networking.gke.io/v1beta1
+kind: ManagedCertificate
+metadata:
+  name: xebikart-main-wildcard-certificate
+  namespace: apps-production
+spec:
+  domains:
+    - 'smoke.xebik.art'

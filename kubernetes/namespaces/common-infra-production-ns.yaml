@@ -1,0 +1,16 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: common-infra-production
+  labels:
+    name: common-infra-production
+    #istio-injection: enabled
+#---
+#apiVersion: networking.gke.io/v1beta1
+#kind: ManagedCertificate
+#metadata:
+#  name: xebikart-main-wildcard-certificate
+#  namespace: common-infra-production
+#spec:
+#  domains:
+#    - 'smoke.xebik.art'
