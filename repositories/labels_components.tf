@@ -31,3 +31,11 @@ module "xebikart-infra_label_component-externaldns" {
   component_name = "external-dns"
   component_description = "ExternalDNS"
 }
+
+module "xebikart-infra_label_component-githubrepos" {
+  source = "./labels-modules/wrappers/component"
+  repository = "${data.github_repository.xebikart-infra-repo.name}"
+
+  component_name = "github-repos"
+  component_description = "GitHub Repositories"
+}
