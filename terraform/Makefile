@@ -3,7 +3,7 @@ export TERRAFORM_CMD = docker run -it --rm \
 			-v `pwd`:/root/terraform \
 			-v gcloud-xebikart-config:/root/.config \
 			-w /root/terraform \
-			hashicorp/terraform:0.11.7
+			hashicorp/terraform:0.11.13
 
 # This Makefile wrapp all terraform commands via docker#
 # To run this commands you must be logged in with the `gcloud` CLI. See README
