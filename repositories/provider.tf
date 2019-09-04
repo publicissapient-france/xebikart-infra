@@ -4,7 +4,7 @@ provider "github" {
 }
 
 terraform {
-  required_version = "~> 0.11"
+  required_version = ">= 0.12"
   backend "gcs" {
     /*
     The configuration is done through partial configuration since backend
