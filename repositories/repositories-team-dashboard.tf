@@ -1,13 +1,22 @@
-data "github_repository" "xebikart-infra-repo" {
-  full_name = "xebia-france/xebikart-infra"
-}
-
-module "xebikart-links-github-repo" {
+# Dashboard
+module "xebikart-dashboard-github-repo" {
   source = "./modules/xebikart-github-repo"
 
-  repo_name = "links"
-  repo_description = "Useful links webpage"
-  repo_site_url = "http://links.xebik.art"
+  repo_name = "dashboard "
+  repo_description = "TODO"
+  repo_site_url = "http://dashboard.xebik.art"
+
+  allow_merge_commit = false
+  additional_topics = ["links"]
+}
+
+# State API
+module "xebikart-state-api-github-repo" {
+  source = "./modules/xebikart-github-repo"
+
+  repo_name = "state-api"
+  repo_description = "TODO"
+  repo_site_url = "http://state.xebik.art"
 
   allow_merge_commit = false
   additional_topics = ["links"]
