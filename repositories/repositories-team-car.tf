@@ -4,7 +4,7 @@ module "xebikart-car-github-repo" {
 
   repo_name        = "car"
   repo_description = "Everything about the cars themselves!"
-  repo_site_url    = "TODO"
+  repo_site_url    = "https://www.donkeycar.com/"
 
   additional_topics = ["car", "donkeycar"]
 }
