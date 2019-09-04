@@ -6,17 +6,18 @@ resource "github_team" "xebikart-main-team" {
 }
 
 resource "github_team" "xebikart-dashboard-team" {
-  name        = "XebiKart - Dashboard"
-  description = "XebiKart - Team Dashboard"
-  parent_team_id = "${github_team.xebikart-main-team.id}"
+  name           = "XebiKart - Dashboard"
+  description    = "XebiKart - Team Dashboard"
+  parent_team_id = github_team.xebikart-main-team.id
 
   privacy = "closed"
 }
 
 resource "github_team" "xebikart-ml-team" {
-  name        = "XebiKart - ML"
-  description = "XebiKart - Team Machine Learning"
-  parent_team_id = "${github_team.xebikart-main-team.id}"
+  name           = "XebiKart - ML"
+  description    = "XebiKart - Team Machine Learning"
+  parent_team_id = github_team.xebikart-main-team.id
 
   privacy = "closed"
 }
+

@@ -1,6 +1,6 @@
 provider "github" {
   organization = "xebia-france"
-  version = "2.0.0"
+  version      = "2.0.0"
 }
 
 terraform {
@@ -11,6 +11,7 @@ terraform {
     configuration cannot contain variable interpolations and we need
     something that will depend on env
     */
-    prefix  = "repositories/state"
+    prefix = "repositories/state"
   }
 }
+
