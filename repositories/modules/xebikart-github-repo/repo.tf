@@ -9,3 +9,7 @@ resource "github_repository" "repo" {
   allow_merge_commit = "${var.allow_merge_commit}"
   topics = concat("${local.default_topics}", "${var.additional_topics}")
 }
+
+# TODO
+#resource "github_repository_team" "team-membership" {
+#}
