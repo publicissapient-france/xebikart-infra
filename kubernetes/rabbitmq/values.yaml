@@ -1,18 +1,14 @@
-# Config for rabbitmq-ha (alias)
-global:
-  rabbitmqMqttPort: 1883
 rabbitmq-ha:
   replicaCount: 2
+  extraLabels:
+    type: infra
+    layer: backend
   service:
     type: LoadBalancer
     # Explicietly override clusterIP so its default value doesn't conflict with LoadBalancer
     clusterIP: null
     annotations:
       external-dns.alpha.kubernetes.io/hostname: rabbitmq.xebik.art
-  metadata:
-    name: my-message-broker
-  labels:
-    app: message-broker
   rabbitmqMQTTPlugin:
     enabled: true
     # TODO: handler storage: https://www.rabbitmq.com/mqtt.html
@@ -45,3 +41,9 @@ rabbitmq-ha:
     queues: |-
       {"name":"kart-events", "vhost":"/", "durable":true, "auto_delete":false, "arguments":{}},
       {"name":"race-events", "vhost":"/", "durable":true, "auto_delete":false, "arguments":{}}
+  prometheus:
+    exporter:
+      enabled: true
+    alerts:
+      enabled: false
+
