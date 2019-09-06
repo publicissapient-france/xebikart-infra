@@ -44,6 +44,8 @@ rabbitmq-ha:
   prometheus:
     exporter:
       enabled: true
+    operator:
+      enabled: false
     alerts:
       enabled: false
 
