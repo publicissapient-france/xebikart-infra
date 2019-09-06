@@ -1,0 +1,46 @@
+prometheusOperator:
+  enabled: true
+  createCustomResource: false
+prometheus:
+  enabled: true
+  podDisruptionBudget:
+    enabled: true
+  additionalServiceMonitors:
+    - name: "rabbitmq-service"
+      selector:
+        matchLabels:
+          type: infra # TODO: user a better name
+          layer: backend
+      endpoints:
+        - targetPort: 9090
+          path: "/metrics"
+          scheme: "http"
+      namespaceSelector:
+        matchNames:
+          - "common-infra-production"
+grafana:
+  adminPassword: admin
+  enabled: true
+  service:
+    type: LoadBalancer # Visible outside the cluster
+    clusterIP: null
+  # Using configmap instead for injecting custom dashboards ?
+  #sidecar:
+  #  dashboards:
+  #    enabled: true
+  dashboardProviders:
+    dashboardproviders.yaml:
+      apiVersion: 1
+      providers:
+        - name: 'default'
+          orgId: 1
+          folder: ''
+          type: file
+          disableDeletion: false
+          editable: true
+          options:
+            path: /var/lib/grafana/dashboards/default
+  dashboards:
+    default:
+      rabbitmq-dashboard:
+        file: dashboards/rabbitmq-metrics_rev3.json
