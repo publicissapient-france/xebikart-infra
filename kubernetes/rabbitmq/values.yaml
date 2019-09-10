@@ -35,6 +35,8 @@ rabbitmq-ha:
   prometheus:
     exporter:
       enabled: true
+      env:
+        RABBIT_EXPORTERS: "exchange,node,queue,connections"
     operator:
       enabled: false
     alerts:
