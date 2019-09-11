@@ -5,8 +5,8 @@ rabbitmq-ha:
     layer: backend
   service:
     type: LoadBalancer
-    # Explicietly override clusterIP so its default value doesn't conflict with LoadBalancer
-    clusterIP: null
+    # Explicitly override clusterIP so its default value doesn't conflict with LoadBalancer
+    clusterIP: ""
     annotations:
       external-dns.alpha.kubernetes.io/hostname: rabbitmq.xebik.art
   rabbitmqMQTTPlugin:
@@ -35,12 +35,6 @@ rabbitmq-ha:
       {"user": "backend", "vhost": "/", "configure": ".*", "write": ".*", "read": ".*"}
     exchanges: |-
       {"name":"xebikart-exchange","vhost":"/","type":"topic","durable":true,"auto_delete":false,"internal":false,"arguments":{}}
-    bindings: |-
-      {"source":"xebikart-exchange", "vhost":"/", "destination":"kart-events", "destination_type":"queue", "routing_key":"events.kart", "arguments":{}},
-      {"source":"xebikart-exchange", "vhost":"/", "destination":"race-events", "destination_type":"queue", "routing_key":"events.race", "arguments":{}}
-    queues: |-
-      {"name":"kart-events", "vhost":"/", "durable":true, "auto_delete":false, "arguments":{}},
-      {"name":"race-events", "vhost":"/", "durable":true, "auto_delete":false, "arguments":{}}
   prometheus:
     exporter:
       enabled: true
