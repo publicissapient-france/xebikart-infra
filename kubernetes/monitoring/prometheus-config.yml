@@ -40,3 +40,5 @@ grafana:
     default:
       rabbitmq-metrics-dashboard:
         file: dashboards/rabbitmq-metrics_rev3.json
+      xebikart-dashboard:
+        file: dashboards/xebikart-dashboard.json
