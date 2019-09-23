@@ -3,6 +3,10 @@ prometheusOperator:
   createCustomResource: false
 prometheus:
   enabled: true
+  service:
+    type: LoadBalancer
+    annotations:
+      external-dns.alpha.kubernetes.io/hostname: prometheus.xebik.art
   podDisruptionBudget:
     enabled: true
   additionalServiceMonitors:
@@ -24,6 +28,8 @@ grafana:
   service:
     type: LoadBalancer # Visible outside the cluster
     clusterIP: null
+    annotations:
+      external-dns.alpha.kubernetes.io/hostname: grafana.xebik.art
   dashboardProviders:
     dashboardproviders.yaml:
       apiVersion: 1
