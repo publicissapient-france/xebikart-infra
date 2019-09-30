@@ -18,6 +18,7 @@ module "xebikart-donkeypart-ps4-github-repo" {
   repo_description = "Donkeycart PS4 Joystick controller - forked from autorope/donkeypart_ps3_controller"
   repo_site_url    = "https://github.com/autorope/donkeypart_ps3_controller"
 
+  repo_visibility_private = false # Public forks can't be made private
   additional_topics = ["car", "donkeycar", "ps4", "controller", "remote"]
 }
 
