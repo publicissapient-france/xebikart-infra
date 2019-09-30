@@ -6,6 +6,6 @@ module "xebikart-android_ar-github-repo" {
   repo_description = "Augmented Reality Android application"
   repo_site_url    = "TODO"
 
-  additional_topics = ["android", "AR", "mobile"]
+  additional_topics = ["android", "ar", "mobile"]
 }
 
