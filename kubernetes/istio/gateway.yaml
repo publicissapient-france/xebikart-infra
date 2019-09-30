@@ -18,5 +18,5 @@ spec:
       # *.xebik.art to Istio since we have non-HTTP services such as RabbitMQ
       # that need to be exposed, and we want pretty names for them too <3
       - "links.xebik.art"
-      #- "dashboard.xebik.art"
-      #- "state.xebik.art"
+      - "dashboard.xebik.art"
+      - "state.xebik.art"
