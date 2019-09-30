@@ -4,6 +4,8 @@ resource "github_repository" "repo" {
   description = "XebiKart - ${var.repo_description}"
   homepage_url = "${var.repo_site_url}"
 
+  has_issues = true
+  has_downloads = true
   has_projects = false
   has_wiki = false
   allow_merge_commit = "${var.allow_merge_commit}"
