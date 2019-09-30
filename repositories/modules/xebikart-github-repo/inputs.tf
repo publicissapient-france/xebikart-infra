@@ -35,3 +35,8 @@ variable "allow_merge_commit" {
   type = bool
   default = true
 }
+
+variable "archived" {
+  type = bool
+  default = false
+}

@@ -5,7 +5,8 @@ module "xebikart-ml-infra-github-repo" {
   repo_name        = "ml-infra"
   repo_description = "Infrastructure support for ML"
   repo_site_url    = "TODO"
-  # TODO archived
+
+  archived = true
 
   additional_topics = ["ml", "infra"]
 }
