@@ -22,6 +22,7 @@ module "xebikart-links-github-repo" {
   repo_name        = "links"
   repo_description = "Useful links webpage"
   repo_site_url    = "http://links.xebik.art"
+  repo_visibility_private = false
 
   allow_merge_commit = false
   additional_topics  = ["links"]
