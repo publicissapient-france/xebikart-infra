@@ -2,7 +2,7 @@
 module "xebikart-dashboard-github-repo" {
   source = "./modules/xebikart-github-repo"
 
-  repo_name        = "dashboard "
+  repo_name        = "dashboard"
   repo_description = "Information display front-end : dashboard, leaderboard, etc."
   repo_site_url    = "http://dashboard.xebik.art"
 
