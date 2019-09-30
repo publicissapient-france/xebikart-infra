@@ -1,0 +1,22 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: xebikart-gateway
+spec:
+  selector:
+    istio: ingressgateway # use istio default controller
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+      # For any app that people want to deploy. Autonomous teams, yay!
+      - "*.istio.xebik.art"
+      # For major services that need a "pretty" name. We can't just delegate
+      # *.xebik.art to Istio since we have non-HTTP services such as RabbitMQ
+      # that need to be exposed, and we want pretty names for them too <3
+      - "links.xebik.art"
+      #- "dashboard.xebik.art"
+      #- "state.xebik.art"
