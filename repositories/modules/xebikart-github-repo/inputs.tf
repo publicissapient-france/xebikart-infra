@@ -5,6 +5,12 @@ locals {
   ]
 }
 
+variable "repo_visibility_private" {
+  type = string
+  description = "Repository visibility. Is is private?"
+  default = true
+}
+
 variable "repo_name" {
   type = string
   description = "Repository name. Will be prefixed by `xebikart-`"

@@ -8,6 +8,8 @@ resource "github_repository" "repo" {
   has_downloads = true
   has_projects = false
   has_wiki = false
+
+  private = "${var.repo_visibility_private}"
   allow_merge_commit = "${var.allow_merge_commit}"
   topics = concat("${local.default_topics}", "${var.additional_topics}")
 }
