@@ -1,6 +1,7 @@
 full:: namespaces rbac helm external-dns smoketest rabbitmq
 
 RABBITMQ_HELM_RELEASE_NAME=xebikart-rabbitmq-ha
+MONITORING_HELM_RELEASE_NAME=xebikart-monitoring
 
 namespaces::
 	@echo -e "\n\e[44m# Create namespaces\e[0m"
@@ -41,3 +42,8 @@ rabbitmq::
 	@echo -n "→ "
 	helm install rabbitmq --namespace common-infra-production -n ${RABBITMQ_HELM_RELEASE_NAME} -f rabbitmq/values.yaml
 	#helm upgrade ${RABBITMQ_HELM_RELEASE_NAME} rabbitmq --namespace common-infra-production -f rabbitmq/values.yaml
+
+monitoring::
+    @echo -e "\n\e[44m# Deploy monitoring stack\e[0m"
+    @echo -n "→ "
+    helm install stable/prometheus-operator --namespace monitoring-production -n ${MONITORING_HELM_RELEASE_NAME} -f monitoring/prometheus-config.yaml
