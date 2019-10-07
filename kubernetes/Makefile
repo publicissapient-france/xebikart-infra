@@ -41,3 +41,12 @@ rabbitmq::
 	@echo -n "→ "
 	helm install rabbitmq --namespace common-infra-production -n ${RABBITMQ_HELM_RELEASE_NAME} -f rabbitmq/values.yaml
 	#helm upgrade ${RABBITMQ_HELM_RELEASE_NAME} rabbitmq --namespace common-infra-production -f rabbitmq/values.yaml
+
+mlflow::
+	@echo -e "\n\e[44m# Deploy MLFlow tracking server\e[0m"
+	@echo -n "→ "
+	kubectl apply -n apps-mlflow -f mlflow-tracking/deployment.yaml
+	@echo -n "→ "
+	kubectl apply -n apps-mlflow -f mlflow-tracking/service.yaml
+	@echo -n "→ "
+	kubectl apply -n apps-mlflow -f mlflow-tracking/virtual-service.yaml
