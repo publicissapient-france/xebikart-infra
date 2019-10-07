@@ -1,6 +1,6 @@
 prometheusOperator:
   enabled: true
-  createCustomResource: false
+  createCustomResource: true
 prometheus:
   enabled: true
   service:
