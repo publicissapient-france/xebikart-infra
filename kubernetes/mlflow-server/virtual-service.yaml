@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: mlflow-tracking-vs
+  name: mlflow-server-vs
 spec:
   hosts:
     - "mlflow.istio.xebik.art"
@@ -10,4 +10,4 @@ spec:
   http:
     - route:
       - destination:
-          host: mlflow-tracking-svc
+          host: mlflow-server-nodeport
