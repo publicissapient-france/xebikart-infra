@@ -6,7 +6,7 @@ spec:
   hosts:
     - "mlflow.istio.xebik.art"
   gateways:
-    - xebikart-gateway
+    - xebikart-gateway.apps-production.svc.cluster.local
   http:
     - route:
       - destination:
