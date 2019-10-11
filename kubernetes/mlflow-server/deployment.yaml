@@ -19,7 +19,7 @@ spec:
         image: eu.gcr.io/xebikart-dev-1/mlflow:1.3.0
         args: [
           "server",
-          "--backend-store-uri", "/mnt/local_storage",
+          "--backend-store-uri", "/mnt/local_storage/mlruns",
           "--default-artifact-root", "gs://xebikart-mlflow-artifacts/",
           "--host", "0.0.0.0"]
         env:
