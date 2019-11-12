@@ -44,6 +44,6 @@ rabbitmq::
 	#helm upgrade ${RABBITMQ_HELM_RELEASE_NAME} rabbitmq --namespace common-infra-production -f rabbitmq/values.yaml
 
 monitoring::
-    @echo -e "\n\e[44m# Deploy monitoring stack\e[0m"
-    @echo -n "→ "
-    helm install stable/prometheus-operator --namespace monitoring-production -n ${MONITORING_HELM_RELEASE_NAME} -f monitoring/prometheus-config.yaml
+	@echo -e "\n\e[44m# Deploy monitoring stack\e[0m"
+	@echo -n "→ "
+	helm install stable/prometheus-operator --namespace monitoring-production -n ${MONITORING_HELM_RELEASE_NAME} -f monitoring/prometheus-config.yaml
