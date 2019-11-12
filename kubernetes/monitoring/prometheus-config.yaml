@@ -1,0 +1,50 @@
+prometheusOperator:
+  enabled: true
+  createCustomResource: true
+prometheus:
+  enabled: true
+  service:
+    type: LoadBalancer
+    annotations:
+      external-dns.alpha.kubernetes.io/hostname: prometheus.xebik.art
+  podDisruptionBudget:
+    enabled: true
+  additionalServiceMonitors:
+    - name: "rabbitmq-service"
+      selector:
+        matchLabels:
+          type: infra # TODO: user a better name
+          layer: backend
+      endpoints:
+        - targetPort: 9090
+          path: "/metrics"
+          scheme: "http"
+      namespaceSelector:
+        matchNames:
+          - "common-infra-production"
+grafana:
+  adminPassword: admin
+  enabled: true
+  service:
+    type: LoadBalancer # Visible outside the cluster
+    clusterIP: null
+    annotations:
+      external-dns.alpha.kubernetes.io/hostname: grafana.xebik.art
+  dashboardProviders:
+    dashboardproviders.yaml:
+      apiVersion: 1
+      providers:
+        - name: 'default'
+          orgId: 1
+          folder: ''
+          type: file
+          disableDeletion: true
+          editable: false
+          options:
+            path: /var/lib/grafana/dashboards/default
+  dashboards:
+    default:
+      rabbitmq-metrics-dashboard:
+        file: dashboards/rabbitmq-metrics_rev3.json
+      xebikart-dashboard:
+        file: dashboards/xebikart-dashboard.json
