@@ -6,6 +6,8 @@ data "google_container_engine_versions" "gke-version-euw1" {
 
 # The main GKE cluster. This is essentially the main purpose of all of this
 resource "google_container_cluster" "gke-cluster" {
+  provider = "google-beta"
+
   name   = "xebikart-gke-${var.environment}-1"
   location = "europe-west1"
   project = "${google_project.xebikart.project_id}"
@@ -20,6 +22,9 @@ resource "google_container_cluster" "gke-cluster" {
 
   addons_config {
     kubernetes_dashboard {
+      disabled = false
+    }
+    istio_config {
       disabled = false
     }
   }
