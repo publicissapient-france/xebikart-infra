@@ -22,6 +22,18 @@ prometheus:
       namespaceSelector:
         matchNames:
           - "common-infra-production"
+    - name: "xebikart-state-api"
+      selector:
+        matchLabels:
+          app: xebikart
+          tier: state-api
+      endpoints:
+      - targetPort: 80
+        path: "/metrics"
+        scheme: "http"
+      namespaceSelector:
+        matchNames:
+        - "apps-production"
 grafana:
   adminPassword: admin
   enabled: true
