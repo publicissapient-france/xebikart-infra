@@ -60,3 +60,5 @@ grafana:
         file: dashboards/rabbitmq-metrics_rev3.json
       xebikart-dashboard:
         file: dashboards/xebikart-dashboard.json
+      xebikart-state-api:
+        file: dashboards/xebikart-state-api.json
