@@ -5,6 +5,7 @@ module "xebikart-dashboard-github-repo" {
   repo_name        = "dashboard"
   repo_description = "Information display front-end : dashboard, leaderboard, etc."
   repo_site_url    = "http://dashboard.xebik.art"
+  repo_visibility_private = false
 
   allow_merge_commit = false
   additional_topics  = ["dashboard", "front", "react"]
@@ -17,6 +18,7 @@ module "xebikart-state-api-github-repo" {
   repo_name        = "state-api"
   repo_description = "Backend to manage race state and send informations to the Dashboard"
   repo_site_url    = "http://state.xebik.art"
+  repo_visibility_private = false
 
   allow_merge_commit = false
   additional_topics  = ["back", "state", "mqtt", "sse"]
